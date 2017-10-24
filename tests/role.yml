@@ -5,10 +5,7 @@
     - role_under_test
 
   pre_tasks:
-    - name: install environment
-      package:
-        name: "{{ item }}"
-        state: present
-      with_items:
-        - apache2
-        - libapache2-mod-php
+    - name: create php ini dir
+      file:
+        state: directory
+        path: "{{ sqlegacy_php_ini | dirname }}"
