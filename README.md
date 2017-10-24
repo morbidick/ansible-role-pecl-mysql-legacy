@@ -15,14 +15,6 @@ vagrant up
 vagrant provision
 ````
 
-## TODO
-
-- [ ] *meta* update author
-- [ ] *meta* update description
-- [ ] *meta* update tags
-- [ ] *readme* update travis batch url
-- [ ] activate travis tests
-
 ## License
 
 MIT
