@@ -1,0 +1,6 @@
+---
+sqlegacy_requirements:
+  - git
+  - php-dev
+sqlegacy_repo: https://github.com/php/pecl-database-mysql
+sqlegacy_php_ini: "/etc/php/7.0/apache2/php.ini"
