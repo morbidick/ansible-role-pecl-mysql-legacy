@@ -3,7 +3,7 @@
   shell: "grep mysql.so {{ sqlegacy_php_ini }}"
   register: module_installed
   ignore_errors: yes
-  changed: no
+  changed_when: no
   no_log: yes
 
 - name: exit role when module is installed
