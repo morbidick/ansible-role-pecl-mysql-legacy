@@ -6,48 +6,52 @@
   changed_when: no
   no_log: yes
 
-- name: exit role when module is installed
-  meta: end_play
-  when: not module_installed.failed
-
 - name: install requirements
   package:
     name: "{{ item }}"
     state: present
   with_items: "{{ sqlegacy_requirements }}"
+  when: module_installed.failed
 
 - name: create temporary build directory
   tempfile:
     state: directory
     suffix: build-mysql-legacy
   register: tmp
+  when: module_installed.failed
 
 - name: checkout git repo
   git:
     repo: "{{ sqlegacy_repo }}"
     dest: "{{ tmp.path }}"
+  when: module_installed.failed
 
 - name: run phpize
   command: "phpize"
   args:
     chdir: "{{ tmp.path }}"
+  when: module_installed.failed
 
 - name: configure
   command: "./configure"
   args:
     chdir: "{{ tmp.path }}"
+  when: module_installed.failed
 
 - name: make
   make:
     chdir: "{{ tmp.path }}"
+  when: module_installed.failed
 
 - name: make install
   make:
     target: install
     chdir: "{{ tmp.path }}"
   register: module_path
+  when: module_installed.failed
 
 - name: register extension
   lineinfile:
     dest: "{{ sqlegacy_php_ini }}"
     line: "extension={{ module_path.stdout.split(' ')[-1] }}mysql.so"
+  when: module_installed.failed
