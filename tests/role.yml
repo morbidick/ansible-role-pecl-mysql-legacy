@@ -7,5 +7,9 @@
   pre_tasks:
     - name: create php ini dir
       file:
+        state: directory
+        path: "{{ sqlegacy_php_ini | dirname  }}"
+    - name: create php ini file
+      file:
         state: touch
         path: "{{ sqlegacy_php_ini }}"
