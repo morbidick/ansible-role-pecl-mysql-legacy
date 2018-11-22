@@ -11,6 +11,9 @@ install:
   # Install Ansible
   - pip install ansible
 
+  # Install php7 dependency
+  - sudo apt-get install php7.0 -qq
+
 script:
   # Basic role syntax check
   - ansible-playbook tests/role.yml --syntax-check
