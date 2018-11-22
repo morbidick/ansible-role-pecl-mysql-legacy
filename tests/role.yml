@@ -13,3 +13,5 @@
       file:
         state: touch
         path: "{{ sqlegacy_php_ini }}"
+        modification_time: "preserve"
+        access_time: "preserve"
